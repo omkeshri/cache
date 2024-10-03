@@ -28,3 +28,19 @@ Both let and const are hoisted(not in gloabal or local lexical enviornment but s
 Both let and const cannot be declared again, if declared it will throw a syntax error.
 
 With let, a variable can be initialized at a later point after its declaration, while const must be initialized at the time of declaration, if not it will throw a type error.
+
+Block: It is a pair of curly braces {} that groups multiple statements together. A block is typically used to structure code into sections, define the scope of variables, and organize logic. Blocks are essential in control structures like loops, if statements, and function definitions.
+
+When a variable declared with var is redeclared inside a block, it changes the global value (a concept known as shadowing). However, this does not happen with let and const, as they are hoisted into a different memory space specific to the block in which they are declared.
+
+Closure: It is a function that "remembers" and has access to its lexical scope, even when the function is executed outside that scope. In other words, a closure allows a function to access variables from an outer function after the outer function has returned.
+        - A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical             environment). In other words, a closure gives a function access to its outer scope. In JavaScript, closures are created every            time a function is created, at function creation time.
+        - Uses:
+              - Module Design Pattern
+              - Currying
+              - Functions like once
+              - Memoize
+              - Maintaining state in async world
+              - SetTimeouts
+              - Iterators etc.
+
