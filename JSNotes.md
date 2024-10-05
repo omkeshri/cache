@@ -183,3 +183,7 @@ setTimeout(function() {
 }, 1000);
 
 ```
+
+<img src="./Assets/JS1.png" alt="JS1">
+<img src="./Assets/JS2.png" alt="JS2">
+<img src="./Assets/JS3.png" alt="JS3">
