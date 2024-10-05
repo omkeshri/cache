@@ -184,6 +184,50 @@ setTimeout(function() {
 
 ```
 
+---
+
+### Callback Function
+A function that is passed as an argument to another function and is executed after some operation is completed within that function. The callback allows for asynchronous or deferred execution of code, meaning that the function receiving the callback can perform a task and once the task is completed (or at a specific point), it can "call back" the passed-in function to handle the result.
+
+```js
+setTimeout unction () {
+  console. log( "timer");
+}, 5000);
+
+function x(y) {
+  console. tog ("x");
+}
+
+x(function y() {
+console. tog ("y");
+});
+```
+
+```
+// Closure Event Listener
+
+function attachEventListeners() {
+  let count = 0;
+  document.getElementById("btn").addEventListener("click",
+  function xyz() {
+    console. log("Button Clicked", ++count);
+  });
+}
+
+attachEventListeners ( ) ;
+```
+
+---
+
+### Event Loop
 <img src="./Assets/JS1.png" alt="JS1">
+
+> The event loop continuously monitors the Call Stack and Callback/Task Queue, moving callbacks from the queue to the stack when the stack is empty.
+
 <img src="./Assets/JS2.png" alt="JS2">
+
+> Microtask Queue has higher priority than Callback Queue
+
 <img src="./Assets/JS3.png" alt="JS3">
+
+> Starvation: At times, the task queue generates an excessive number of microtasks, causing tasks, like those in the Callback Queue, to be delayed or starved of execution.
