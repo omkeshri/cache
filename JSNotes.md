@@ -407,10 +407,14 @@ const output = users.reduce((acc, curr) => {
 #### 1 - Callback hell
 When a function is passed as an argument to another function, it becomes a callback function. When multiple callbacks are nested within other callbacks, the code expands horizontally rather than vertically. This structure is referred to as callback hell.
 
+#### 2 - Inversion of control
+When a callback function is passed to another function, control over the execution flow is shifted, making it harder to manage the code. Since the logic is handled behind the scenes, it becomes challenging to track what is happening, leading to reduced maintainability of the program.
+
+
 ```js
 // Callback Hell or Pyramid of Loop 
 const cart = ["shoes", "pants", "kurta"] ;
-api.createOrder(cart, function () {
+api.createOrder(cart, function () {  // Giving Control to api
   api.proceedToPayment(function () {
     api. showOrderSummary(function () {
       api. updateWallet()
@@ -418,9 +422,6 @@ api.createOrder(cart, function () {
   })
 })
 ```
-
-#### 2 - Inversion of control
-When a callback function is passed to another function, control over the execution flow is shifted, making it harder to manage the code. Since the logic is handled behind the scenes, it becomes challenging to track what is happening, leading to reduced maintainability of the program.
 
 ---
 
