@@ -232,6 +232,10 @@ attachEventListeners ( ) ;
 
 > Starvation: At times, the task queue generates an excessive number of microtasks, causing tasks, like those in the Callback Queue, to be delayed or starved of execution.
 
+> `setTimeout` does not guarantee execution at the exact time specified. Once the timer expires in the Web API's environment, the callback is moved to the callback queue. However, the event loop will only push the callback onto the call stack after the stack is empty, meaning it has completed executing the current code. Therefore, if other tasks are still running, the callback execution may be delayed.
+
+> If we want something to be executed last in our code like a function, we can use `setTimeout with a delay of 0`. This schedules the task to be added to the callback queue, ensuring it will only be executed after the call stack is empty and all other synchronous code has run. This effectively pushes the task to the end of the execution order.
+
 ---
 
 ### JavaScript Runtime Environment
@@ -243,6 +247,8 @@ A program or an interpreter that executes JavaScript code. It takes the JavaScri
 
 > Code -> Parsing -> Compilation -> Execution
 
+<img src="./Assets/JSEngine.png"></img>
+
 ##### Parsing
 JS Engine has a syntax parser that takes the code and convert it in AST(Abstract Syntax Tree).
 
@@ -251,4 +257,61 @@ JS Engine has a syntax parser that takes the code and convert it in AST(Abstract
 __Interpreter__: Early JavaScript engines were pure interpreters. They executed the JavaScript code line-by-line, but this wasn't very efficient for large or complex programs.
 
 __JIT (Just-In-Time) Compiler__: Modern JavaScript engines use Just-In-Time compilation to improve performance. Instead of interpreting the code line-by-line, the engine compiles frequently used code into machine code at runtime, optimizing it for faster execution.
+
+```
+Examples of JS Engine:-
+
+V8 by Google
+Spider Monkey by Mozilla
+JavaScriptCore (Nitro) by Apple
+Chakra by Microsoft
+Hermes by Meta
+```
+<img src="./Assets/V8.png"></img>
+
+---
+
+### Higher Order Function
+
+A function that either takes one or more functions as arguments, returns a function as a result, or both.
+
+```js
+// calculate is a Higher Order Function.
+
+const area = function (radius) {
+  return Math. PI * radius * radius;
+}
+
+const cicumference = function (radius) {
+  return 2 * Math. PI * radius;
+}
+
+const diameter = function (radius) {
+  return 2 * radius;
+}
+
+const calculate = function (radius, logic) {
+  const output = [];
+  for (let i = 0; i < radius.length; i++) {
+    output. push(logic(radius [i])) ;
+  return output;
+}
+
+console. log (calculate( radius , area);
+console. log (calculate( radius, circumference);
+console. log (calculate( radius, diameter);
+
+----------------------------------------------------
+
+Array.prototype.calculate = function (logic) {
+  const output = [];
+  for (let i = 0; i < this.length; i++) {
+    output. push( logic( radius [i] ) ) ;
+  return output;
+}
+
+console.log(radius.map(area));
+console.log(radius.calculate(area));
+
+```
 
