@@ -252,6 +252,8 @@ A program or an interpreter that executes JavaScript code. It takes the JavaScri
 ##### Parsing
 JS Engine has a syntax parser that takes the code and convert it in AST(Abstract Syntax Tree).
 
+<img src="./Assets/ASTParse.png"></img>
+
 ##### Compilaton & Execution
 
 __Interpreter__: Early JavaScript engines were pure interpreters. They executed the JavaScript code line-by-line, but this wasn't very efficient for large or complex programs.
