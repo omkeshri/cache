@@ -231,3 +231,24 @@ attachEventListeners ( ) ;
 <img src="./Assets/JS3.png" alt="JS3">
 
 > Starvation: At times, the task queue generates an excessive number of microtasks, causing tasks, like those in the Callback Queue, to be delayed or starved of execution.
+
+---
+
+### JavaScript Runtime Environment
+
+A runtime environment that include JS Engine, Web API's, Callback Queue, Microtask Queue, Event Loop...
+
+#### JS Engine
+A program or an interpreter that executes JavaScript code. It takes the JavaScript code you write and transforms it into machine-readable instructions that the computer's processor can understand and execute.
+
+> Code -> Parsing -> Compilation -> Execution
+
+##### Parsing
+JS Engine has a syntax parser that takes the code and convert it in AST(Abstract Syntax Tree).
+
+##### Compilaton & Execution
+
+__Interpreter__: Early JavaScript engines were pure interpreters. They executed the JavaScript code line-by-line, but this wasn't very efficient for large or complex programs.
+
+__JIT (Just-In-Time) Compiler__: Modern JavaScript engines use Just-In-Time compilation to improve performance. Instead of interpreting the code line-by-line, the engine compiles frequently used code into machine code at runtime, optimizing it for faster execution.
+
