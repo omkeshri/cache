@@ -315,3 +315,103 @@ console.log(radius.calculate(area));
 
 ```
 
+---
+
+### Map, Filter & Reduce
+
+> These are higher order functions.
+
+#### Map
+
+Creates a new array populated with the results of applying a provided function to every element in the calling array.
+
+```js
+//To convert array elements into binary
+const arr = [2, 4, 5, 3];
+
+function binary(x){
+  return x.toString(2);
+}
+
+const result = arr.map(binary);
+
+const result = arr.map(function binary(x){  // function directly inside map
+  return x.toString(2);
+}
+
+const result = arr.map((x) => {  // arrow function inside map
+  return x.toString(2);
+}
+
+// For one line we need not to return, just simply write the logic.
+```
+
+#### Filter
+
+Creates a new array with all elements that pass the test implemented by the provided function.
+
+```js
+// To filter odd values from array
+const arr = [5, 3, 4, 7, 8];
+
+function idOdd(x){
+  return x % 2;
+}
+
+const output = arr.filter(isOdd);
+
+const output = arr.filter(function isOdd(x){
+  return x % 2;
+}
+
+const output = arr.filter((x) => x % 2);
+```
+
+#### Reduce 
+
+Executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+
+```js
+//To find max value in arr
+const arr = [3, 5, 2, 7, 3];
+
+const output = arr.reduce(function (acc, curr){
+  if(acc < curr){
+    acc = curr;
+  }
+  return acc;
+}, 0);
+
+// acc is accumulator the output initalized by 0 and curr is the current node of array.
+```
+
+```js
+// To find first name of having age less than 30.
+const users = [
+  {firstName : "Om", lastName: "Keshri", age: 20},
+  {firstName: "Demo", lastName: "User", age: 32},
+]
+
+const output = users.filter((x) => x.age < 30).map((x) => x.firstName);
+
+const output = users.reduce((acc, curr) => {
+  if (curr.age< 30) acc.push(curr.firstName);
+  return acc;
+}, []);
+```
+
+---
+
+### Callback Hell
+
+```js
+// Callback Hell or Pyramid of Loop 
+const cart = ["shoes", "pants", "kurta"] ;
+api.createOrder(cart, function () {
+  api.proceedToPayment(function () {
+    api. showOrderSummary(function () {
+      api. updateWallet()
+    })
+  })
+})
+```
