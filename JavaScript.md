@@ -427,3 +427,5 @@ api.createOrder(cart, function () {  // Giving Control to api
 
 ---
 
+### Promises
+
