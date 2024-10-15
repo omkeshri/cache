@@ -61,5 +61,8 @@ import { calculateSum } from "./file1.js";
 calculateSum(3, 4);
 ```
 
+<img src="./Assets/CJSvsESM.png" alt="CJSvsESM"></img>
+
 > `module.exports` is an empty object.
 
+> Strict Mode doesn't allow errors to be ignored. For example, assigning a = 10 without declaring it using var, let, or const will throw an error in Strict Mode, whereas it would be allowed in non-strict mode, making a a global variable.
