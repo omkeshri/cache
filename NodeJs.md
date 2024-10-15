@@ -3,7 +3,7 @@
 Node Js is a JavaScript runtime built on Chrome's V8 JavaScript Engine.
 
 > `globalThis` keyword can be used to access the global object in both browser and node.<br>
-> __In browser:__ `this`, `global`, `self`, `frame`.. can also be used.<br>
+> __In Browser:__ `this`, `global`, `self`, `frame`.. can also be used.<br>
 > __In NodeJs:__ `global` can also be used.
 
 ## require
