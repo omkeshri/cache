@@ -6,6 +6,8 @@ Node Js is a JavaScript runtime built on Chrome's V8 JavaScript Engine.
 > __In Browser:__ `this`, `global`, `self`, `frame`.. can also be used.<br>
 > __In NodeJs:__ `global` can also be used.
 
+---
+
 ## require
 
 `require` is a built-in function used to load modules, JSON, or local files. It's part of the CommonJS module system. When you use require(), Node.js loads the specified module and makes its exported functions, objects, or variables available in the current file.
@@ -13,6 +15,8 @@ Node Js is a JavaScript runtime built on Chrome's V8 JavaScript Engine.
 ```js
 const express = require('express');
 ```
+
+---
 
 ## Module Type
 
@@ -66,3 +70,14 @@ calculateSum(3, 4);
 > `module.exports` is an empty object.
 
 > Strict Mode doesn't allow errors to be ignored. For example, assigning a = 10 without declaring it using var, let, or const will throw an error in Strict Mode, whereas it would be allowed in non-strict mode, making a a global variable.
+
+---
+
+## Immediately Invoked Function Expression (IIFE)
+
+```js
+function() {
+    // Code
+}) ();
+```
+> When we use `require("/path")`, the entire module's code is enclosed within an Immediately Invoked Function Expression (IIFE).
