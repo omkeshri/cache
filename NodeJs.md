@@ -65,7 +65,14 @@ import { calculateSum } from "./file1.js";
 calculateSum(3, 4);
 ```
 
-<img src="./Assets/CJSvsESM.png" alt="CJSvsESM"></img>
+```
+    CJS(Common JS Module)               vs               ESM(Ecma Script Module)
+1.  module.exports and require()                         import export
+2. By default used in node js                            By default used in React, Angular
+3. Older way                                             Newer way
+4. Synchronous                                           Asynchronous
+5. Non Strict Mode                                       Strict Mode
+```
 
 > `module.exports` is an empty object.
 
@@ -81,3 +88,61 @@ function() {
 }) ();
 ```
 > When we use `require("/path")`, the entire module's code is enclosed within an Immediately Invoked Function Expression (IIFE).
+
+---
+
+## V8 Engine
+
+### Types of Languages
+
+```
+Interpreted                        vs                Compiled
+1. Line by Line Execution                            First Compilation then Execution (High Level Code -> Machine Code)
+2. Fast Initial Execution                            Initially heavy but executed fast
+3. Interpretter                                      Compiler
+```
+
+> Code -> Parsing -> Compilation + Interpretation -> Execution
+
+The V8 Engine processes code in two steps. First, it performs tokenization (or lexical analysis), converting the code into tokens. Then, in the second step, it conducts syntax analysis (or parsing) to transform these tokens into an Abstract Syntax Tree (AST).
+
+> Code that is repeatedly executed (eg:- function) is known as hot code.
+
+```
+// JUST IN TIME COMPILATION
+      -----  
+     | AST |
+      -----  
+        ↓
+                               Hot Code           -----------------
+                           --------------->      |Turbofan Compiler|
+ --------------------         Optimization        -----------------
+|Ignition Interpreter|
+ --------------------                                      ↓
+                            Deoptimization        ----------------------
+                           <---------------      |Optimized Machine Code| // If there is any changes in the code it will deoptimize.
+        ↓                                         ----------------------
+    ---------                                      
+   |Byte Code|
+    ---------                                              
+        ↓                                                  ↓
+                               ---------                             
+                              |Execution|
+                               ---------
+```
+
+Garbage Collection is also part of the process.
+- Orinoco
+- Oil Pan
+- Scavenger
+- MCompact
+
+---
+
+## libuv Library
+
+- libuv is a C library originally developed for Node.js to provide support for asynchronous I/O(non-blocking IO), handling things like files, network connections, and timers.
+- It offers an event loop, asynchronous file and socket operations, timers, child processes, and other core I/O features essential for Node.js.
+- Since it's in C, it provides a bridge that lets Node.js, written in JavaScript, manage low-level system interactions more efficiently.
+
+  
