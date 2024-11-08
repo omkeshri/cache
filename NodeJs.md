@@ -91,6 +91,8 @@ function() {
 
 ---
 
+<img src="Assets/V8libuv.png" alt="V8libuv">
+
 ## V8 Engine
 
 ### Types of Languages
@@ -120,8 +122,8 @@ The V8 Engine processes code in two steps. First, it performs tokenization (or l
 |Ignition Interpreter|
  --------------------                                      ↓
                             Deoptimization        ----------------------
-                           <---------------      |Optimized Machine Code| // If there is any changes in the code it will deoptimize.
-        ↓                                         ----------------------
+                           <---------------      |Optimized Machine Code| // If there is any changes in the code it will
+        ↓                                         ----------------------     deoptimize.
     ---------                                      
    |Byte Code|
     ---------                                              
@@ -145,4 +147,6 @@ Garbage Collection is also part of the process.
 - It offers an event loop, asynchronous file and socket operations, timers, child processes, and other core I/O features essential for Node.js.
 - Since it's in C, it provides a bridge that lets Node.js, written in JavaScript, manage low-level system interactions more efficiently.
 
-  
+### Event Loop
+
+<img src="Assets/EventLoop.png" alt="eventloop"> 
