@@ -115,19 +115,22 @@ The V8 Engine processes code in two steps. First, it performs tokenization (or l
       -----  
      | AST |
       -----  
-        ↓
-                               Hot Code           -----------------
-                           --------------->      |Turbofan Compiler|
- --------------------         Optimization        -----------------
-|Ignition Interpreter|
+        |
+        |                     Hot Code            -----------------
+        ↓                  --------------->      |Turbofan Compiler|
+ --------------------        Optimization         -----------------
+|Ignition Interpreter|                                     |
  --------------------                                      ↓
-                            Deoptimization        ----------------------
-                           <---------------      |Optimized Machine Code| // If there is any changes in the code it will
+        |                   Deoptimization        ----------------------
+        |                  <---------------      |Optimized Machine Code| // If there is any changes in the code it will
         ↓                                         ----------------------     deoptimize.
-    ---------                                      
-   |Byte Code|
-    ---------                                              
-        ↓                                                  ↓
+    ---------                                              |
+   |Byte Code|                                             |
+    ---------                                              |
+        |                                                  |
+         --------------------------------------------------
+                                   |
+                                   ↓
                                ---------                             
                               |Execution|
                                ---------
