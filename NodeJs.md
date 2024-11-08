@@ -153,3 +153,106 @@ Garbage Collection is also part of the process.
 ### Event Loop
 
 <img src="Assets/EventLoop.png" alt="eventloop"> 
+
+It is what allows Node.js to perform non-blocking I/O operations — despite the fact that a single JavaScript thread is used by default — by offloading operations to the system kernel whenever possible.
+
+When Node.js starts, it initializes the event loop, which continuously checks for and processes tasks (also called events). The event loop consists of phases that manage different types of operations:
+
+- Timer -> setTimeOut(), setInterval()
+- Poll -> I/O callback, Incoming Connection, Data, fs, crypto, http, get
+- check -> setImmediate()
+- close -> socket.on("close")
+
+When an asynchronous operation is handled by libuv, it waits in its designated callback queue. The event loop continuously monitors the main call stack, and when it finds it empty, it pushes the operation into the stack. `setTimeOut` and `setInterval` callbacks are executed first, followed by the `poll phase` callbacks, then `setImmediate` and finally `close` callback. Before entering each phase, the event loop runs a separate check to execute any callbacks queued by `process.nextTick()` and resolved `Promise` callbacks. This ensures that these callbacks are prioritized and processed immediately before moving on to the next phase in the event loop.
+
+#### Examples
+
+```js
+// Example 1
+const a = 100;
+
+setImmediate(() => console.log("setImmediate"));
+
+fs.readFi1e(" ./fite.txt, "utf8", () => {
+    console. log ("File Reading CB");
+}
+
+setTimeout(() => console.log("Timeout expired");
+
+function printA() {
+    console.log("a=", a);
+}
+
+printA() ;
+console.log("Last line of the file.");
+
+
+// Output
+a=100
+Last Line of the file.
+Timeout Expired.
+setImmediate
+File Reading CB        // File Reading takes time depends on the file size.
+```
+
+```js
+// Example 2
+setImmediate(() => console.log("Immediate");
+
+setTimeout(() console.log("Timer expired"), 0);
+
+Promise.resolve(() => console.log("Promise");
+
+fs.readFile("./file.txt", "Utf8", () => {
+    setTimeout(() => console.log("2nd timer")), 0);
+
+    process.nextTick(() => console.log("2nd nextTick"));
+
+    setImmediate(() console. log(" 2nd Immediate"));
+
+    console.log("File Reading CB");
+});
+
+process.nextTick(() => console.log("nextTick"));
+
+// Output
+nextTick
+Promise
+Timer Expired
+Immediate
+File Reading CB
+2nd nextTick
+2nd Immediate
+2nd timer
+```
+
+> When the event loop completes a cycle, it pauses in the `poll` phase. Therefore, any nested operations will start from the poll phase.
+
+```js
+// Example 3
+setImmediate(() => console. tog ("setImmediate"));
+
+setTimeout(() => console.log("Timer expired"), 0);
+
+fs.readFile("./file.txt", "utf8", () => {
+    console.log("File Reading CB");
+});
+
+process.nextTick(() => {
+    process.nextTick(() => console.log("inner nextTick"));
+    console. log ("nextTick");
+});
+
+console.log("Last Line of the file");
+
+// Output
+Last Line of the file
+nextTick
+inner nextTick
+Timer expired
+setImmediate
+File Reading CB
+```
+
+> `nextTick()` nested inside `nextTick()` will execute together.
+
