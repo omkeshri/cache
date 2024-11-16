@@ -256,3 +256,62 @@ File Reading CB
 
 > `nextTick()` nested inside `nextTick()` will execute together.
 
+### Thread Pool
+
+<img src="Assets/ThreadPool.png" alt="Thread Pool">
+
+Thread Pool is an implementation to manage and reuse multiple threads to perform asynchronous operations efficiently. Node.js uses a 
+thread pool internally to handle non-blocking I/O operations like file system tasks, network requests, and cryptography-related tasks.
+
+Thread pool is provided by the libuv library and has a default size of 4 threads. It can be increased using the `UV_THREADPOOL_SIZE` environment variable.
+
+#### Tasks in Thread Pool
+- File System Operations (`fs.readfile`, `fs.writeFile`)
+- DNS Lookups (`dns.lookup` when not using native bindings)
+- Compression / Decompression (`zlib`)
+- Cryptography (`crypto` methods like `pbkdf2`, `scrypt`, etc.)
+
+#### Examples
+
+```js
+const fs = require("fs");
+const crypto = require("crypto")
+process.env.UV_THREADPOOL_SIZE = 2;
+
+crypto.pbkdf2("password , "salt", 5000000, 50, "sha512", (err, key) => {
+    console.log("1 - cryptoPBKDF2 done");
+});
+
+crypto.pbkdf2("password , "salt", 5000000, 50, "sha512", (err, key) => {
+    console.log("2 - cryptoPBKDF2 done");
+});
+
+crypto.pbkdf2("password , "salt", 5000000, 50, "sha512", (err, key) => {
+    console.log("3 - cryptoPBKDF2 done");
+});
+
+crypto.pbkdf2("password , "salt", 5000000, 50, "sha512", (err, key) => {
+    console.log("4 - cryptoPBKDF2 done");
+});
+
+crypto.pbkdf2("password , "salt", 5000000, 50, "sha512", (err, key) => {
+    console.log("5 - cryptoPBKDF2 done");
+});
+
+// OUTPUT
+4 - cryptoPBKDF2 done
+1 - cryptoPBKDF2 done
+3 - cryptoPBKDF2 done
+2 - cryptoPBKDF2 done
+5 - cryptoPBKDF2 done
+
+// Any thread in the thread pool can execute first; there is no guarantee of execution order.
+```
+
+```
+ -------                                OS
+| libuv |     <------->    epoll (Linux) & kqueue (MacOS)
+ -------
+
+        Scalable I/O Event Notification Mechanism
+```
