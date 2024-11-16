@@ -258,6 +258,8 @@ File Reading CB
 
 ### Thread Pool
 
+> Node.js operates on a single thread for synchronous tasks but utilizes multiple threads for handling asynchronous operations.
+
 <img src="Assets/ThreadPool.png" alt="Thread Pool">
 
 Thread Pool is an implementation to manage and reuse multiple threads to perform asynchronous operations efficiently. Node.js uses a 
