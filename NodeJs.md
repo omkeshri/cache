@@ -350,6 +350,8 @@ Packet transfer involves sending and receiving data across a network in small un
 
 The DNS (Domain Name System) client-server relationship is a fundamental mechanism that facilitates domain name resolution, allowing users to access websites and services using human-readable domain names (e.g., example.com) instead of IP addresses (e.g., 192.168.1.1).
 
+<img src="Assets/MultiServer.png" alt="MutliServer">
+
 Multiple servers can be created, each configured to use a different port number.
 
 > A socket connection transfers data and then disconnects, whereas a WebSocket maintains an ongoing connection.
@@ -398,7 +400,7 @@ A database is a organized collection of data or a type of data store based on th
 
 
 #### Example
-````js
+```
 // RDBMS - Table
  --------------------------------------------
 | ID | first_name | last_name | phone | city |
