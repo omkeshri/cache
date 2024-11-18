@@ -317,3 +317,106 @@ crypto.pbkdf2("password , "salt", 5000000, 50, "sha512", (err, key) => {
 
         Scalable I/O Event Notification Mechanism
 ```
+
+---
+
+## Server
+
+<img src="Assets/Server.png" alt="Server">
+
+A server is a __computer system or a software application__ that provides services, resources, or data to other devices, known as clients, over a network.
+
+ _Client-Server Architecture_: Servers interact with clients (such as web browsers, mobile apps, or other devices). The server processes client requests and returns the required data or performs actions.
+
+
+### Types of Server
+
+<img src="Assets/TypesofServer.png" alt="TypesofServer">
+
+1. HTTP - Hosts and serves web content like HTML pages, CSS, JavaScript, images, etc., to clients (e.g. browsers).
+        - Examples: Apache, Nginx, Microsoft IIS, Node.js.
+
+2. FTP  - Facilitates file transfers between computers.
+        - Examples: FileZilla Server, vsftpd, ProFTPD.
+
+3. SMTP - Handles the sending and routing of emails across the internet.
+        - Examples: Postfix, Sendmail, Microsoft Exchange.
+
+<img src="Assets/Packets.png" alt="Packets">
+
+Packet transfer involves sending and receiving data across a network in small units known as packets. This method, essential for internet functionality and most computer networks, enables efficient and reliable data communication.
+
+<img src="Assets/DNS.png" alt="DNS">
+
+The DNS (Domain Name System) client-server relationship is a fundamental mechanism that facilitates domain name resolution, allowing users to access websites and services using human-readable domain names (e.g., example.com) instead of IP addresses (e.g., 192.168.1.1).
+
+Multiple servers can be created, each configured to use a different port number.
+
+> A socket connection transfers data and then disconnects, whereas a WebSocket maintains an ongoing connection.
+```
+Domain Name <------> IP + Port
+Path        <------> API
+
+Link - IP + Port + API
+
+demo.com/ api/getUserInfo
+|_______| |_| |_________|
+    |      |       |
+123.4.5.6:3000   Code
+            |     
+        HTTP Server
+```
+
+---
+
+## DataBase
+
+A database is a organized collection of data or a type of data store based on the use of database management system (DBMS). Often the term database also used loosely to refer to any of the DBMS, the database system or an application associated with the database.
+
+### Types of Database
+
+1. __Relational Database__ - MySQL, PostgreSQL
+2. __NoSQL DB__ - MongoDB
+3. __In memory DB__ - Redis
+4. __Distributed SQL DB__ - Cockroach DB
+5. __Time Series DB__ - Influx DB
+6. __Object Orientd DB__ = db40
+7. __Graph DB__ - Neo4j
+8. __Hierachial DB__ - IBM IMS
+9. __Network DB__ - IDMS
+10. __Cloud DB__ - Amazon RDS
+
+#### RDBMS (MySQL) vs NoSQL (MongoDB)
+   - Table, Rows, Columns | Collection, Document, Fields  
+   - Structured Data | Unstructured Data
+   - Fixed Schema | Flexible Schema
+   - SQL | Mongo (MQL), Neo4J(Cypher)
+   - Tough Horizontal Scaling | Easy to scale horizontally + vertically
+   - Relationships (foreign keys + joins) | Nested [Relationships]
+   - Read heavy apps, transaction workloads | Real Time, Big Data, Distributed Computing
+   - Eg. Banking Apps | Eg. Real Time Analytics, Social Media
+
+
+#### Example
+````js
+// RDBMS - Table
+ --------------------------------------------
+| ID | first_name | last_name | phone | city |
+ --------------------------------------------
+| 01 |     Om     |   Keshri  | xxxxx | xxxx |
+ --------------------------------------------
+| 02 |    xxxx    |   xxxxxx  | xxxxx | xxxx |
+ --------------------------------------------
+
+// NoSQL - Collection
+{
+    "id": 1,
+    "first_name": "xxxx",
+    "last_name": "xxxx",
+    "phone": "xxxx",
+    "city": "xxxx",
+    "hobbies": ["reading", "working"]
+}
+
+```
+
