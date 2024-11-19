@@ -352,6 +352,10 @@ The DNS (Domain Name System) client-server relationship is a fundamental mechani
 
 <img src="Assets/MultiServer.png" alt="MutliServer">
 
+---
+
+## Microservices and Monolith
+
 Multiple servers can be created, each configured to use a different port number.
 
 > A socket connection transfers data and then disconnects, whereas a WebSocket maintains an ongoing connection.
