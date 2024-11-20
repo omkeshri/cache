@@ -352,10 +352,6 @@ The DNS (Domain Name System) client-server relationship is a fundamental mechani
 
 <img src="Assets/MultiServer.png" alt="MutliServer">
 
----
-
-## Microservices and Monolith
-
 Multiple servers can be created, each configured to use a different port number.
 
 > A socket connection transfers data and then disconnects, whereas a WebSocket maintains an ongoing connection.
@@ -425,4 +421,14 @@ A database is a organized collection of data or a type of data store based on th
 }
 
 ```
+
+---
+
+## Monolith and Microservices 
+
+A monolithic architecture is a software design approach where all components of an application (user interface, business logic, and data access) are built into a single, tightly-coupled unit. All functionalities reside in a single codebase and are deployed as one unified executable or application.
+
+A microservices architecture is a software design pattern where an application is broken into a collection of small, loosely-coupled, and independently deployable services. Each service is responsible for a specific functionality and communicates with other services using lightweight protocols like HTTP/REST, gRPC, or messaging queues.
+
+---
 
