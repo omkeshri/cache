@@ -395,7 +395,7 @@ A database is a organized collection of data or a type of data store based on th
    - SQL | Mongo (MQL), Neo4J(Cypher)
    - Tough Horizontal Scaling | Easy to scale horizontally + vertically
    - Relationships (foreign keys + joins) | Nested [Relationships]
-   - Read heavy apps, transaction workloads | Real Time, Big Data, Distributed Computing
+   - Read heavy apps, transaction workloads | Real-Time, Big Data, Distributed Computing
    - Eg. Banking Apps | Eg. Real Time Analytics, Social Media
 
 
@@ -426,9 +426,61 @@ A database is a organized collection of data or a type of data store based on th
 
 ## Monolith and Microservices 
 
-A monolithic architecture is a software design approach where all components of an application (user interface, business logic, and data access) are built into a single, tightly-coupled unit. All functionalities reside in a single codebase and are deployed as one unified executable or application.
+A monolithic architecture is a software design approach where all components of an application (user interface, business logic, and data access) are built into a single, tightly coupled unit. All functionalities reside in a single codebase and are deployed as one unified executable or application.
 
-A microservices architecture is a software design pattern where an application is broken into a collection of small, loosely-coupled, and independently deployable services. Each service is responsible for a specific functionality and communicates with other services using lightweight protocols like HTTP/REST, gRPC, or messaging queues.
+A microservices architecture is a software design pattern that breaks an application into a collection of small, loosely coupled, and independently deployable services. Each service is responsible for a specific functionality and communicates with other services using lightweight protocols like HTTP/REST, gRPC, or messaging queues.
 
 ---
 
+```js
+const express = require("express");
+
+const app = express();
+
+// The callback function is called route handler
+app.get("/user", (req, res) => {
+    // /user?userId=xxx
+    console.log(req.query)
+
+    // user/707   /user/:userID
+    console.log(req.params)
+
+    
+    res.send({"firstname": "Om", "lastname": "Keshri"});
+})
+
+app.post("/user", (req, res) => {
+    // saving data to DB
+    res.send("Data Saved Successfully!");
+})
+
+
+// This will match all http request method api calls to /user
+app.use("/home", (req, res) => {
+  res.send("Hello World from Dashboard!");
+});
+
+// n becomes optional
+app.use("/con?tact", (req, res) => {
+  res.send("Hello World from Contact!");
+});
+
+// s and rvices should be there any no of e between
+app.use("/se+rvices", (req, res) => {
+  res.send("Hello World from Services!");
+});
+
+// start with se end with rvices in between anything
+app.use("/se*rvices", (req, res) => {
+  res.send("Hello World from Services!");
+});
+
+// rv optional
+app.use("/se(rv)?ices", (req, res) => {
+  res.send("Hello World from Services!");
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000...");
+});
+```
