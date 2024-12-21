@@ -1,1 +1,1 @@
-__Just a place to dump all my notes.__
+__Just a place to keep track of my notes.__
