@@ -1,3 +1,155 @@
+<div align="center">
+  <h1>JAVASCRIPT</h1>
+</div>
+
+# History
+Mocha -> LiveScript -> JavaScript
+
+__ECMAScript (ES) is a standardized scripting language specification that serves as the foundation for JavaScript. It is maintained by ECMA International under the ECMA-262 standard. When JavaScript was created by Brendan Eich at Netscape in 1995, different browsers started implementing their own versions of JavaScript, leading to inconsistencies. To create a unified standard, ECMA International developed ECMAScript, ensuring that JavaScript remains consistent across different environments.__
+
+__ES6 -> Biggest Update in JS in 2015(modern JS)__
+
+__Babel is a JavaScript compiler that allows developers to use the latest ECMAScript (ES) features while ensuring compatibility with older browsers or environments that do not support them.__
+
+# Overview
+Can only use '_' and '$' symbol in variable.
+
+# Input
+1. `prompt()` (Browser-based Input) (Takes a string as input)
+2. `readLine()` (For Node.Js)
+```js
+const readline = require("readline").createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+readline.question("Enter your name: ", (name) => {
+    console.log("Hello, " + name);
+    readline.close();
+});
+```
+
+> ```js
+ for (let i = 0; i<5; ++i){
+   console.log(i);
+ }
+ console.log(i); // output: error
+ To solve this declare i outside
+ let i = 0;
+ for(; i<5; ++i)
+```
+
+# String
+.length -> to get the length of string
+
+If spaces given in string, it will be counted as the part of string. eg:- "Hello   "
+
+### String Methods
+1. The `.trim()` method in JavaScript is used to remove whitespace from both the beginning and end of a string. It does not modify the original string but returns a new one.
+    `trimStart()`, `trimEnd()`
+   .trim() also removes tabs(\t), newlines(\n, \r)
+
+2. The 'toUpperCase()` method in JavaScript is used to conver all the characters of a string to uppercase. It does not modify the original string but returns a new one.
+   
+3. The 'toLowerCase()` method in JavaScript is used to conver all the characters of a string to lowercase. It does not modify the original string but returns a new one.
+
+4. The `.slice()` method is used to extract a part of a string (or an array) and returns a new string (or array) without modifying the original.
+```js
+let name = "Om Keshri";
+let firstName = name.slice(0, 2);  // output: Om
+```
+
+# Types of Data Types(Primitive)
+`String`
+`Number`
+`Boolean`
+`Undefined`
+`null`
+`BigInt` -> To declare number greater than MAX_SAFE_INTEGER(9007199254740991). let num = BigIng(1234567891011121314) of let num = 1234567891011121314n;
+`Symbol`
+
+### typeof Operator
+The `typeof` operator is used to determine the data type of a given value or variable in JavaScript.
+
+Note: When variable is not only defined not initialized it will output undefined type. Not possible in const bcoz it should be initialize while declaring.
+
+Note: typeof null is object in JS. This is a long-standing bug in JavaScript due to historical reasons.
+
+```js
+let name = "Om Keshri";
+console.log(typeof name)
+
+// number to string
+let num = 1;
+let num_str = num + "";
+console.log(typeof num_str) // output: string
+num = String(num) // another way
+
+// string to number
+let str = "Om";
+let str_num = +str;
+console.log(typeof str_num); // output: number
+let str = Number(str) // another way
+```
+
+### String Template
+```js
+let name = "Om";
+let age = 20;
+
+let aboutMe = `My name is ${name} and my age is ${age};
+```
+
+# == vs === operator and != vs !==
+`=== ` and `!==` checks both value and type (strict equality), while `==` and `!=` performs type conversion before comparison (loose equality).
+
+# falsy vs truthy values
+falsy -> `false`, `""`, `null`, `undefined`, `0`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### JavaScript Overview
 
 **JavaScript** is a synchronous, single-threaded, and high-level language.
@@ -428,4 +580,9 @@ api.createOrder(cart, function () {  // Giving Control to api
 ---
 
 ### Promises
+
+
+
+--------------------------------------------------------------------------
+
 
