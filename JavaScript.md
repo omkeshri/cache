@@ -29,7 +29,7 @@ readline.question("Enter your name: ", (name) => {
 });
 ```
 
-> ```js
+ ```js
  for (let i = 0; i<5; ++i){
    console.log(i);
  }
@@ -39,6 +39,41 @@ readline.question("Enter your name: ", (name) => {
  for(; i<5; ++i)
 ```
 
+# Loops
+1. for
+2. while
+3. do while
+4. for of
+   Used to iterate over arrays, strings, Maps, Sets, and other iterable objects. It gives values directly.
+   ```js
+   let fruits = ["apple", "mango", "orange"];
+   for (let fruit of fruits){
+     console.log(fruit);
+   }
+   // output: apple, mango, orange
+   ```
+5. for in
+  Used to iterate over object properties (keys). It gives keys (not values) of an object.
+   ```js
+   let obj = { name: "Alice", age: 25 };
+
+   for (let key in obj) {
+      console.log(key, obj[key]);
+   }
+   // Output:
+   // name Alice
+   // age 25
+
+
+   let arr = [10, 20, 30];
+
+   for (let index in arr) {
+      console.log(index, arr[index]);
+   }
+   // Output: 0 10, 1 20, 2 30
+
+   ```
+   
 # String
 .length -> to get the length of string
 
@@ -106,6 +141,97 @@ let aboutMe = `My name is ${name} and my age is ${age};
 # falsy vs truthy values
 falsy -> `false`, `""`, `null`, `undefined`, `0`
 
+## Primitive vs Reference Data Types
+The key difference is how they are stored in memory and how they are copied when assigned to a new variable. 
+
+Primitive types are immutable (cannot be changed) and are stored by value in memory. When assigned to a new variable, a copy is created.
+
+Reference types are mutable (can be modified) and are stored by reference in memory. When assigned to a new variable, both variables point to the same memory location.
+
+```js
+  // primitive
+  let num1 = 1;
+  let num2 = num1;
+  console.log(num1); // output: 1
+  console.log(num2); // output: 1
+
+  num1 = 10;
+  console.log(num1); // output: 10
+  console.log(num2); // output: 1
+
+  // reference
+  let arr1 = [1, 2];
+  let arr2 = arr1;
+  console.log(arr1); // output: 1, 2
+  console.log(arr2); // output: 1, 2
+
+  arr1.push(3);
+  console.log(arr1); // output: 1, 2, 3
+  console.log(arr2); // output: 1, 2, 3
+```
+
+# Array
+1. Ordered collection of items.
+2. Any data type can be stored in a single array. eg: `let arr = ["string", 1, null, undefined, 2.3]`
+3. typeof array is object by default. Note: To check if a variable is an array, do `Array.isArray(arr)`.
+4. Array is a reference data type.
+5. To find size, use `.length`.
+
+```js
+let numbers = [1, 2, 3, 4];
+or
+let numbers = new Array(1, 2, 3, 4);
+```
+
+### Array Operations
+1. Push(Add to end)
+   ```js
+   let arr = [1, 2, 3];
+   arr.push(4);  
+   console.log(arr); // [1, 2, 3, 4]
+   ```
+
+2. Unshift(Add to start)
+   ```js
+   arr.unshift(0);
+   console.log(arr); // [0, 1, 2, 3, 4]
+   ```
+
+3. Pop(Remove from end)
+   ```js
+   arr.pop(); // It also return the popped value. We can store this in a variable and use it.
+   console.log(arr); // [0, 1, 2, 3]
+   ```
+
+4. Shift(Remove from start)
+   ```js
+   arr.shift(); // It also return the popped value. We can store this in a variable and use it.
+   console.log(arr); // [1, 2, 3]
+   ```
+
+> Note: `push` and `pop`are faster than `shift` and `unshift` because they operate on the end of the array, while shift and unshift modify the beginning, which requires shifting all elements.
+
+### Array Clone
+```js
+  let arr1 = [1, 2];
+  let arr2 = arr1.slice(0); // fastest
+  arr1.push(3);
+  console.log(arr1); // output: 1, 2, 3
+  console.log(arr2); // output: 1, 2
+or
+  let arr2 = [].concat(arr1);
+or
+  // use spread operator
+  let arr2 = [...arr1]; // most used
+
+// to add elements along with cloning
+let arr2 = arr1.slice(0).concat([3, 4, 5]);
+or
+let arr2 = [].concat(arr1, [3, 4, 5]);
+or
+let arr2 = [...arr1, 3, 4, 5];
+```
+> Note: We can create an array using `const` and still modify its contents with array methods because the constant variable holds a reference(address) to the array's memory address in the heap, not the array itself. We cannot reassign the array though.
 
 
 
