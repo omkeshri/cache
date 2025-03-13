@@ -96,11 +96,17 @@ let firstName = name.slice(0, 2);  // output: Om
 
 # Types of Data Types(Primitive)
 `String`
+
 `Number`
+
 `Boolean`
+
 `Undefined`
+
 `null`
+
 `BigInt` -> To declare number greater than MAX_SAFE_INTEGER(9007199254740991). let num = BigIng(1234567891011121314) of let num = 1234567891011121314n;
+
 `Symbol`
 
 ### typeof Operator
