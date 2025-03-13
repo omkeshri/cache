@@ -233,6 +233,87 @@ let arr2 = [...arr1, 3, 4, 5];
 ```
 > Note: We can create an array using `const` and still modify its contents with array methods because the constant variable holds a reference(address) to the array's memory address in the heap, not the array itself. We cannot reassign the array though.
 
+### Array Destructuring
+Array destructuring is a syntax that allows extracting values from an array and assigning them to variables in a concise way.
+```js
+const arr = [1, 2, 3, 4]; 
+const [a, b, c] = arr; // the rest element will not affect the destructuring.
+const [a, b, c, ...newArr] = arr // the rest element will be pushed in the newArr.
+const [d, , e, f] = arr; // to skip an index
+
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
+
+const arr = [1];
+const [a, b, c] = arr;
+
+console.log(a); // 1
+console.log(b); // undefined
+console.log(c); // undefined
+```
+
+# Object
+An object is a collection of key-value pairs. It allows you to store multiple related values under a single entity. Objects are fundamental in JavaScript and are used to represent real-world entities like users, products, or configurations. It is a reference data type.
+
+```js
+const person = {
+  name: "Alice",
+  age: 25,
+  isStudent: false
+};
+
+console.log(person.name); // Alice
+console.log(person.age);  // 25
+console.log(person["name"]); // Alice
+
+person.hobbies = ["music", "sports"];
+person["gender"] = "male";
+```
+
+### Dot vs Bracket Notation
+JavaScript provides two ways to access object properties:
+
+1. Dot Notation (.) – Simple and commonly used.
+2. Bracket Notation ([]) – More flexible, useful for dynamic keys.
+
+```js
+const person = { "full name": "Alice Doe", age: 25 };
+
+console.log(person.full name); // error
+console.log(person["full name"]); // "Alice Doe"
+
+// Using a dynamic key
+const key = "age";
+
+person.key = 13; // key : 13
+person[key] = 13; // age : 13
+```
+### Iterate Object
+1. for in loop
+   ```js
+   const person = { name: "Alice", age: 25, city: "New York" };
+
+   for (let key in person) {
+   console.log(`${key}: ${person[key]}`);
+   }
+   // Output:
+   // name: Alice
+   // age: 25
+   // city: New York
+   ```
+   
+2. Object.keys()
+   ```js
+   const person = { name: "Alice", age: 25, city: "New York" };
+
+   console.log(Object.keys(person)); // [name, age, city] type is array(object in js)
+
+   for (let key of Object.keys(person)){
+     console.log(person[key]);
+   } // output: [Alice, 25, New York]
+   ```
+
 
 
 
