@@ -73,6 +73,8 @@ readline.question("Enter your name: ", (name) => {
    // Output: 0 10, 1 20, 2 30
 
    ```
+
+6. for each
    
 # String
 .length -> to get the length of string
@@ -320,10 +322,168 @@ person[key] = 13; // age : 13
    } // output: [Alice, 25, New York]
    ```
 
+### Computed Properties
+```js
+const key1 = "objkey1";
+const key2 = "objkey2";
 
+const value1 = "myvalue1";
+const value2 = "myvalue2";
 
+const obj = {
+  [key1] : value1,
+  [key2] : value2
+}
+or
+const obj = {};
+obj[key1] = value1;
+obj[key2] = value2;
+```
 
+## Spread Operator
+```js
+// array
+const arr = [..."123456789"];
+console.log(arr); // output: ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
+// object
+const obj1 = {
+  key1 : "value1",
+  key2 : "value2"
+}
+
+const obj2 = {
+  key3 : "value3",
+  key4 : "value4",
+  key1 : "valueunique1"
+}
+
+const newObj = {...obj1, ...obj2, key69 : "value69"}; // the last object key1 value will be in the output
+
+const obj = {..."abc"};
+console.log(obj); // output: 0:"a", 1:"b", 2:"c";
+
+// array to object
+const obj = {...["item1", "item2"]};
+console.log(obj); // output: 0:"item1", 1:"item2";
+```
+
+### Object Destructuring
+```js
+const person = {
+  name : "Om Keshri",
+  age : 20,
+  dob : 2005
+}
+
+const { name, age, ...rest } = person;
+const { name: fullName, age } = person; // to change variable name
+```
+
+### Object inside Array
+```js
+const users = [
+  {userId: 1, name: "Om", age: 20},
+  {userId: 1, name: "Lisha", age: 24},
+  {userId: 1, name: "Disha", age: 28},
+]
+
+for (let user of users){
+  console.log(user);
+}
+
+// destructuring
+const [ user1, user2, user3 ] = users;
+const [ { name: firstName //name change }, { age }, user3 ] = users; // Om, 20, {userId: 1, name: "Disha", age: 28}
+```
+
+# Function
+```js
+// function declaration
+function happyBirthday() {
+  console.log("Happy Birthday!");
+}
+
+// function expression (anonymous function assigned to a variable)
+const happyBirthday = function() {
+  console.log("Happy Birthday!");
+  }
+
+Note: Hoisting does not work in case of function expression.
+
+// arrow function
+const happyBirthday = () => {
+  console.log("Happy Birthday!");
+  }
+
+// default parameter
+function add(a, b=0) {
+}
+
+// rest parameter
+functon add(a, b, ...c){
+  console.log(a); // output: 1
+  console.log(b); // output: 2
+  console.log(c); // output: [3, 4, 5, 6, 7]
+}
+add(1, 2, 3, 4, 5, 6, 7);
+
+function add(... numbers) { // numbers is an array here 
+  let total = 0;
+  for(let number of numbers){
+    total = total + number;
+  }
+    return total;
+}
+const ans = add(1, 2, 3, 4, 5, 6);
+console.log(ans);
+
+// param destructuring
+const person = {
+  firstName: "harshit",
+  gender: "male",
+}
+
+function printDetails(obj){
+  console.log(obj.firstName);
+  console.log(obj.gender);
+  console.log(obj.age); // undefined
+}
+or
+function printDetails({ firstName, gender }){
+  console.log(obj.firstName);
+  console.log(obj.gender);
+}
+
+printDetails(person) ;
+
+// callback function
+function myFunc2(){
+  console.log("inside my func2");
+}
+
+function myFunc(callback){
+  callback();
+}
+
+myFunc(myFunc2); // output: inside my func2
+
+// function returning function
+function myFunc(){
+  function hello(){
+    return "hello worldl"
+  }
+  return hello;
+}
+
+const ans = myFunc();
+ans();
+or
+myFunc()();
+```
+
+> `let` and `const` are block scoped whereas var is a function scoped.
+> A function that either takes one or more functions as arguments, returns a function as a result, or both is called higher order function.
 
 
 
