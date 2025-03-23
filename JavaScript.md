@@ -43,7 +43,8 @@ readline.question("Enter your name: ", (name) => {
 1. for
 2. while
 3. do while
-4. for of
+4. for each
+5. for of
    Used to iterate over arrays, strings, Maps, Sets, and other iterable objects. It gives values directly.
    ```js
    let fruits = ["apple", "mango", "orange"];
@@ -52,7 +53,7 @@ readline.question("Enter your name: ", (name) => {
    }
    // output: apple, mango, orange
    ```
-5. for in
+6. for in
   Used to iterate over object properties (keys). It gives keys (not values) of an object.
    ```js
    let obj = { name: "Alice", age: 25 };
@@ -73,8 +74,6 @@ readline.question("Enter your name: ", (name) => {
    // Output: 0 10, 1 20, 2 30
 
    ```
-
-6. for each
    
 # String
 .length -> to get the length of string
@@ -483,6 +482,7 @@ myFunc()();
 ```
 
 > `let` and `const` are block scoped whereas var is a function scoped.
+> 
 > A function that either takes one or more functions as arguments, returns a function as a result, or both is called higher order function.
 
 
