@@ -485,7 +485,91 @@ myFunc()();
 > 
 > A function that either takes one or more functions as arguments, returns a function as a result, or both is called higher order function.
 
+# Array Methods
+1. forEach
+   ```js
+   const number = [4, 2, 5, 8];
 
+   function myFunc(number, index){
+     console.log(index, number);
+   }
+   
+   number.forEach(myFunc); // passed callback function;
+   or
+   number.forEach(function(number, index){
+     console.log(index, number);
+   }); // anonymous function
+   or
+   number.forEach((number, index) => {
+     console.log(index, number);
+   }); // arrow function
+   ```
+
+2. map
+   - map return a new array but forEach not
+   ```js
+   const number = [4, 2, 5, 8];
+
+   const square = function(number){
+     return number * number // if not return and console.log it will return undefined while printing the value in console
+   }
+
+   const mapArr = number.map(square);
+   or
+   const mapArr = number.map(function(number){
+     return number * number;
+   });
+   or
+   const mapArr = number.map((number) => {
+     return number * number;
+   });
+   
+   console.log(mapArr); // output: [16, 4, 25, 64]
+   ```
+
+3. filter
+   - returns a new array
+   ```js
+   const number = [4, 2, 5, 8];
+
+   const isEven = function(number){
+     return number % 2 === 0
+   }
+
+   const filterArr = number.filter(isEven);
+   or
+   const filterArr = number.filter(function(number){
+     return number % 2 === 0;
+   });
+   or
+   const filterArr = number.filter((number) => {
+     return number % 2 === 0;
+   });
+   
+   console.log(mapArr); // output: [4, 2, 8]
+   ```
+
+4. reduce
+   - reduce array to a single value
+   ```js
+   const number = [4, 2, 5, 8];
+
+   const isEven = function(number){
+     return number % 2 === 0
+   }
+
+   const reduceSum = number.reduce((acc, curr) => {
+     return acc + curr;
+   }, 0); // if 0 not passed, the initial value of acc will be number[0]
+   
+   console.log(reduceSum); // output: 19
+
+   // accumulator, current, return
+   // 0          , 4      , 4 
+   // 4          , 2      , 6
+   // 6          , 5      , 11
+   // 11         , 8      , 19
+   ```
 
 
 
