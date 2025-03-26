@@ -571,11 +571,110 @@ myFunc()();
    // 11         , 8      , 19
    ```
 
+5. sort
+   - It sort the array according to ascii value.
+   ```js
+   const numbers = [5, 9, 1200, 410, 300];
+   // ["5", "9", "1200", "410", "300"]
+   // [53, 57, 49, 52, 51]
+   
+   0 -> 48
+   1 -> 49
+   2 -> 50
+   3 -> 51
+   4 -> 52
+   5 -> 53
+   6 -> 54
+   7 -> 55
+   8 -> 56
+   9 -> 57
+   
+   numbers.sort();
+   console.log(numbers); // output: [1200, 300, 410, 5, 9]
 
+   const arr = ["banana", "apple", "Pears"];
+   arr.sort();
+   console.log(arr); // output: ["Pears", "apple", "banana"]
 
+   // to sort numbers
+   numbers.sort((a,b) => a-b); // output: [5, 9, 300, 410, 1200] ascending
+   numbers.sort((a,b) => b-a); // output: [1200, 410, 300, 9, 5] descending
 
+   const products = [
+     { productId: 1, productName: "A", price: 500 },
+     { productId: 1, productName: "A", price: 500 },
+     { productId: 1, productName: "A", price: 800 },
+     { productId: 1, productName: "A", price: 100 },
+     { productId: 1, productName: "A", price: 900 }
+   ]
 
+   const newProducts = products.slice(0).sort((a, b) => return {a.price - b.price});
+   // output: a new sorted array
+   ```
 
+6. find
+   - takes a callback function and return the first value that satisfy the condition otherwise undefined
+   ```js
+   const arr = [1, 2, 3, 4, 5];
+
+   console.log(arr.find((num) => num > 3); // output: 4
+   console.log(arr.find((num) => num > 6); // output: undefined
+   ```
+
+7. every
+   - checks all element in an array is satisfying the condition or not and returns a boolean value
+   ```js
+   const numbers = [2, 4, 6, 8, 10];
+
+   const ans = number.every((num) => num % 2 === 0); // output: true
+
+   const numbers = [2, 3, 4, 5, 6];
+
+   const ans = number.every((num) => num % 2 === 0); // output: false
+   ```
+
+8. some
+   - checks even one element in an array is satisfying the condition or not and returns a boolean value
+   ```js
+   const numbers = [0, 1, 3, 5, 10];
+
+   const ans = number.some((num) => num % 2 === 0); // output: true
+
+   const numbers = [0, 1, 3, 5, 7];
+
+   const ans = number.some((num) => num % 2 === 0); // output: false
+   ```
+
+9. fill
+   ```js
+   const arr = new Array(10).fill(10);
+   console.log(arr); // output: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+
+   const arr = [1, 2, 3, 4, 5, 6];
+   // arr.fill(value, start, end)
+   arr.fill(-1, 2, 5); // output: [1, 2, -1, -1, -1, 6]
+   ```    
+
+10. splice
+    - add, remove, and replace elements at a certain position in an array
+    ```js
+    const arr = [1, 2, 3, 4, 5];
+    
+    // delete
+    arr.splice(1, 2); // output: It returns the deleted item in an array
+    console.log(arr); // output: [1, 4, 5]
+
+    // insert
+    arr.splice(1, 0, 'inserted item');
+    console.log(arr); // output: [1, 'inserted item', 2, 3, 4, 5]
+
+    // replace - delete + insert
+    arr.splice(1, 2, 'inserted item1', 'insert item 2'];
+    console.log(arr); // output: [1, 'inserted item1', 'inserted item 2', 4, 5]
+    ```
+
+    
+    
 
 
 
