@@ -359,7 +359,10 @@ const obj2 = {
 
 const newObj = {...obj1, ...obj2, key69 : "value69"}; // the last object key1 value will be in the output
 
+// object clone
 const obj = {..."abc"};
+or
+const obj = Object.assign({}, abc);
 console.log(obj); // output: 0:"a", 1:"b", 2:"c";
 
 // array to object
@@ -673,9 +676,132 @@ myFunc()();
     console.log(arr); // output: [1, 'inserted item1', 'inserted item 2', 4, 5]
     ```
 
-    
-    
+# Set
+- It is iterable
+- No index based access // gives undefined when access
+- Order is not guaranteed
+- No duplicates allowed
+- typeof set is object
 
+```js
+const numbers = new Set();
+const arr = ["helo", "world"];
+
+numbers.add(1);
+numbers.add(1);
+numbers.add(2);
+numbers.add(arr);
+numbers.add(arr);
+numbers.add(["items1", "items2"]);
+numbers.add(["items1", "items2"]);
+numbers.add();
+numbers.add();
+
+console.log(numbers); // output: { 1, 2, ["helo", "world"], ["items1", "items2"], ["items1", "items2"], undefined }
+
+// to check if the given element is present
+if (numbers.has(1)) console.log("true");
+
+// to iterate
+for (number of numbers) console.log(number);
+
+// to find length (.length will give undefined)
+let length = 0;
+for (number of numbers) length++;
+```
+
+# Map
+- It is iterable
+- store data in key value pair
+- No duplicate keys allowed
+- Object can only have string and symbol as key but map can have any data type
+
+```js
+const person = new Map();
+
+person.set("firstName", "Om");
+person.set(1, "two");
+person.set([1, 2, 3], 1);
+person.set({1: 'one'}, 'onetwothree');
+
+console.log(person);
+// output
+ Map(4) {
+  'firstName' => 'Om',
+  1 => 'two',
+  [ 1, 2, 3 ] => 1,
+  { '1': 'one' } => 'onetwothree'
+}
+
+// to find value of a key
+console.log(person.get(1)); // 'two'
+
+// to iterate for keys
+for (key of person.keys()){
+  console.log(key, typeof key);
+}
+// output
+firstName string
+1 number
+[ 1, 2, 3 ] object
+{ '1': 'one' } object
+
+// to iterate with keyvalue
+for (keyvalue of person){
+  console.log(keyvalue);
+}
+// output will be an array keyvalue
+[ 'firstName', 'Om' ]
+[ 1, 'two' ]
+[ [ 1, 2, 3 ], 1 ]
+[ { '1': 'one' }, 'onetwothree' ]
+
+// to destructure key value
+for ([key, value] of person){
+  console.log(keyvalue);
+}
+// output
+firstName Om
+1 two
+[ 1, 2, 3 ] 1
+{ '1': 'one' } onetwothree
+
+// to directly add value
+const person = [['firstName', 'Om'], [1, 2]];
+
+
+const personl = {
+  id: 1,
+  firstName: "om"
+}
+
+const person2 = {
+  id: 2,
+  firstName: "Keshri"
+}
+
+const extraInfo = new Map() ;
+extraInfo. set(personl, {age: 8, gender: "male"} ) ;
+extralnfo. setCperson2, {age: 9, gender: "female"} ) ;
+
+console.log(extraInfo); // object => object
+console.log(person.id);
+console.log(extraInfo.get(personl) .gender);
+console.log(extraInfo.get(person2).gender);
+```
+
+# Optional Chaining
+```js
+const obj = {
+  firstName: "Om",
+}
+
+console.log(obj.age); // output: undefined
+console.log(obj.address.landmark); // error
+console.log(obj.address?.landmark); // undefined
+```
+
+# Methods
 
 
 
