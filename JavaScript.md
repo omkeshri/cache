@@ -802,11 +802,116 @@ console.log(obj.address?.landmark); // undefined
 ```
 
 # Methods
+- function inside object
+### this
+```js
+console.log(this); // window (in browser)
 
+"use strict";
+console.log(this); // undefined
 
+const obj = {
+  name: "Alice",
+  greet() {
+    console.log(this.name);
+  }
+};
+obj.greet(); // Alice
 
+function Person(name) {
+  this.name = name;
+}
+const p1 = new Person("Bob");
+console.log(p1.name); // Bob
 
+// Inside a class, this refers to the instance of the class.
+class Car {
+  constructor(brand) {
+    this.brand = brand;
+  }
+  show() {
+    console.log(this.brand);
+  }
+}
+const car1 = new Car("Tesla");
+car1.show(); // Tesla
 
+// Arrow functions do not have their own this. They inherit this from their surrounding scope.
+const obj = {
+  name: "Charlie",
+  greet: function() {
+    const inner = () => {
+      console.log(this.name);
+    };
+    inner();
+  }
+};
+obj.greet(); // Charlie
+
+// In event handlers, this refers to the element that fired the event.
+document.querySelector("button").addEventListener("click", function() {
+  console.log(this); // The button element
+});
+
+// mistakes
+const obj = {
+  name: "Om",
+  about: function(){
+      console.log(`${this.name}`);
+  }
+}
+
+obj.about(); // output: Om
+const fn = obj.about;
+fn(); // output: undefined because this assigned in runtime and only the reference of about is saved in fn
+
+const fn = obj.about.bind(obj); // correct
+```
+
+### call, apply, and bind
+```js
+// call() and apply() explicitly set this and immediately call the function.
+function greet(age, hobby) {
+  console.log(this.name, age, hobby);
+}
+const user = { name: "David" };
+
+greet.call(user, 20, "guitar"); // David 20 guitar
+greet.apply(user, [20, "guitar"]); // David 20 guitar
+
+// bind() returns a new function with this permanently set.
+const boundGreet = greet.bind(user);
+boundGreet(); // David
+```
+
+### proto
+```js
+const userMethods = {
+  about: function(){
+    return ${this.firstName) is ${this.age) years
+  },
+  is18: function(){
+    return this.age >= 18;
+  },
+  sing: function(){
+    return 'toon na na na la la ';
+  }
+}
+
+function createUser(firstName, lastName, email, age, address){
+  const user = Object.create(userMethods); // added __proto__ or [[prototype]] from createUser to userMethods
+
+  user.firstName = firstName;
+  user.lastName = lastName;
+  user.age = age;
+  user.address = address;
+
+  return user;
+}
+
+const user1 = createUser('Om', 'omkeshri21@gmail.com', '20', 'punjab');
+console.log(user1.sing()); // output: toon na na na la la
+```
 
 
 
