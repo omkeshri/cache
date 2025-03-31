@@ -913,21 +913,243 @@ const user1 = createUser('Om', 'omkeshri21@gmail.com', '20', 'punjab');
 console.log(user1.sing()); // output: toon na na na la la
 ```
 
+# Prototype
+`prototype` is a fundamental concept that enables inheritance and reusability in objects. Every JavaScript function automatically has a prototype property, which is an object that contains properties and methods that other objects can inherit.
+
+- js function => function + object
+- 
+```js
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// Adding a method to the prototype
+Person.prototype.sayHello = function() {
+    console.log(`Hello, my name is ${this.name}`);
+};
+
+// Creating instances
+const person1 = new Person("Alice", 25);
+const person2 = new Person("Bob", 30);
+
+person1.sayHello(); // Hello, my name is Alice
+person2.sayHello(); // Hello, my name is Bob
 
 
+function createUser(firstName, lastName, email, age, address){
+  const user = Object.create(createrUser.prototype);
+
+  user.firstName = firstName;
+  user.lastName = lastName;
+  user.age = age;
+  user.address = address;
+
+  return user;
+}
+
+createrUser.prototype.about= function(){
+    return ${this.firstName) is ${this.age) years
+  },
+  createrUser.prototype.is18= function(){
+    return this.age >= 18;
+  },
+  createrUser.prototype.sing= function(){
+    return 'toon na na na la la ';
+  }
+
+const user1 = createUser('Om', 'omkeshri21@gmail.com', '20', 'punjab');
+console.log(user1.sing()); // output: toon na na na la la
+```
+
+## new 
+The `new` keyword in JavaScript is used to create instances of objects from a constructor function. It automates the process of setting up this, linking the prototype, and returning an object.
+
+```js
+function Person(name, age) { // a construction function should start with capital to distinguish
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.sayHello = function() {
+    console.log(`Hello, my name is ${this.name}`);
+};
+
+const person1 = new Person("Alice", 25);
+// new keyword will
+- create an empty object this = {}
+- return this
+- automatically add the prototype object in the proto of person1
+
+person1.sayHello(); // Hello, my name is Alice
 
 
+function createUser(firstName, lastName, email, age, address){
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.age = age;
+  this.address = address;
+}
+
+createrUser.prototype.about= function(){
+  return ${this.firstName) is ${this.age) years
+};
+createrUser.prototype.is18= function(){
+  return this.age >= 18;
+};
+createrUser.prototype.sing= function(){
+  return 'toon na na na la la ';
+};
+
+const user1 = new createUser('Om', 'omkeshri21@gmail.com', '20', 'punjab');
+console.log(user1.sing()); // output: toon na na na la la
+
+for (let key in user1){
+  console.log(key); // firstName lastName age address about is18 sing
+  if (user1.hasOwnProperty(key)){ // return a boolean value
+    console.log(key); // firstName lastName age address
+  }
+}
+
+let numbers = [1, 2, 3]; // Internally numbers = new Array(1, 2, 3);
+console.log(Object. getPrototypeOf(numbers)); // an array of all array methods
+
+// to change function prototype object to arrat
+fn.prototype = [];
+```
+
+# Class
+The `class` keyword in JavaScript was introduced in ES6 (ECMAScript 2015) to provide a cleaner and more structured way to create objects and implement inheritance using prototypes. Internally, JavaScript classes are syntactic sugar over prototype-based inheritance.
+
+```js
+class Create User{
+  constructor(firstName, lastName, email, age, address){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.address = address;
+  }
+
+  about(){
+    return ${this.firstName) is ${this.age) years
+  };
+  is18(){
+    return this.age >= 18;
+  };
+  sing(){
+    return 'toon na na na la la ';
+  };
+}
+
+const user1 = new createUser('Om', 'omkeshri21@gmail.com', '20', 'punjab');
+console.log(user1.sing()); // output: toon na na na la la
+```
+
+# extend
+The `extends` keyword in JavaScript is used in class inheritance to create a child class from a parent class. The child class inherits properties and methods from the parent class, allowing for code reuse and specialization.
+```js
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    makeSound() {
+        console.log("Some generic sound...");
+    }
+}
+
+class Dog extends Animal {
+    bark() {
+        console.log("Woof! Woof!");
+    }
+}
+
+class Cat extends Animal {
+  constructor(name, age, speed){
+    super(name , age) // get constructor of parent class  
+    this.speed = speed;
+  }
+
+  getSpeed() {
+        console.log(this.speed);
+    }
+}
+
+const myDog = new Dog("Buddy");
+console.log(myDog.name); // Buddy (inherited from Animal)
+myDog.makeSound(); // Some generic sound... (inherited from Animal)
+myDog.bark(); // Woof! Woof!
 
 
+// getters and setters
+class Person{
+  constructor(firstName, lastName, age)
+    this.firstName = firstName;
+    this.1astName = tastName;
+    this.age = age;
+  }
 
+  get fullNameProperty(){
+    return ${this.firstName} ${this.lastName}
+  }
 
+  fullNameMethod(){
+    return ${this.firstName} ${this.lastName}
+  }
 
+  // method to set firstName, lastName
+  setName(firstName, lastName){
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
+  // setter
+  setName(fullName){
+    const [firstName, lastName] = fullName.split(" ");
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+}
 
+const person1 = new Person("Rohit", "Sharma", 35),
+console.log(person1.fullNameProperty); // Rohit Sharma getter convert the method to a property so it can be accessed without ()
+console.log(person1.fullNameMethod()); //Rohit Sharma
 
+person1.setName("Om", "Keshri");
+or
+person1.firstName = "Om";
+person1.lastName = "Keshri";
+or
+person1.fullName = "Om Keshri" // setter  
+```
 
+## static
+The `static` keyword in JavaScript is used to define methods or properties that belong to the class itself, rather than instances of the class.
+```js
+class Person{
+  constructor(firstName, lastName, age)
+    this.firstName = firstName;
+    this.1astName = tastName;
+    this.age = age;
+  }
 
+  static desc(){
+    return ("this is desc");
+  }
 
+  get fullNameProperty(){
+    return ${this.firstName} ${this.lastName}
+  }
+
+  fullNameMethod(){
+    return ${this.firstName} ${this.lastName}
+  }
+}
+
+const person1 = new Person("om", "keshri", 20);
+console.log(person1.desc); // Error not a function
+console.log(Person.desc); // this is desc
+```
 
 
 
