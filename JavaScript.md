@@ -1151,6 +1151,72 @@ console.log(person1.desc); // Error not a function
 console.log(Person.desc); // this is desc
 ```
 
+## DOM
+Optimal way to update dom
+
+`append()` -> Adds content inside an element, at the end.
+
+`prepend()` -> Adds content inside an element, at the beginning.
+
+`remove()` -> Removes the element from the DOM.
+
+`before()` -> Inserts content before the element (same parent).
+
+`after()` -> Inserts content after the element (same parent).
+
+## Event Listeners
+`addEventListener()` is a built-in method in JavaScript that allows you to register a function (called a callback) to be executed when a specific event occurs on a DOM element.
+
+`click`, `dblclick`, `mouseover`, `mouseout`, `mouseenter`, `mouseleave`, `mousedown`, `mouseup`, `mousemove`, `keydown`, `keyup`, `keypress`, `submit`, `change`, `input`, `focus`, `blur`, `scroll`, `resize`
+
+Note: Event Listeners behaves like asynchronous operation. It captured in web api enviroment, go to callback queue and event loops checks the call stack to push it to call stack.
+
+### Event bubbling vs Event Capturing
+```js
+                +----------------------+
+                |      <grand>         |
+                |  (id="grand")        |
+                |                      |
+                |   +-------------+    |        Capturing: grand -> parent -> child
+                |   |  <parent>    |   |        Bubbling: child -> parent -> grand
+                |   | (id="parent")|   |
+                |   |   +-------+  |   |
+                |   |   |<child>|  |   |
+                |   |   +-------+  |   |
+                |   +--------------+   |
+                |                      |
+                +----------------------+
+```
+
+Event delegation is a technique where instead of attaching event listeners to multiple child elements, you attach one listener to a common ancestor (like the parent), and handle events based on the `event.target`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
