@@ -1191,8 +1191,49 @@ Note: Event Listeners behaves like asynchronous operation. It captured in web ap
 Event delegation is a technique where instead of attaching event listeners to multiple child elements, you attach one listener to a common ancestor (like the parent), and handle events based on the `event.target`.
 
 
+## Callback Issues
+
+### 1 - Callback hell
+When a function is passed as an argument to another function, it becomes a callback function. When multiple callbacks are nested within other callbacks, the code expands horizontally rather than vertically. This structure is referred to as callback hell.
+
+### 2 - Inversion of control
+When a callback function is passed to another function, control over the execution flow is shifted, making it harder to manage the code. Since the logic is handled behind the scenes, it becomes challenging to track what is happening, leading to reduced maintainability of the program.
 
 
+```js
+// Callback Hell or Pyramid of Doom 
+const cart = ["shoes", "pants", "kurta"] ;
+api.createOrder(cart, function () {  // Giving Control to api
+  api.proceedToPayment(function () {
+    api. showOrderSummary(function () {
+      api. updateWallet()
+    })
+  })
+})
+```
+
+## Promise
+Promise is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+```js
+// production
+const myPromise = new Promise((resolve, reject) => {
+  // async operation
+  if (/* success */) {
+    resolve("Success!");
+  } else {
+    reject("Something went wrong.");
+  }
+});
+
+// consumption
+myPromise
+  .then(response => {
+    console.log(response);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+```
 
 
 
@@ -1631,26 +1672,7 @@ const output = users.reduce((acc, curr) => {
 
 ---
 
-### Callback Issues
 
-#### 1 - Callback hell
-When a function is passed as an argument to another function, it becomes a callback function. When multiple callbacks are nested within other callbacks, the code expands horizontally rather than vertically. This structure is referred to as callback hell.
-
-#### 2 - Inversion of control
-When a callback function is passed to another function, control over the execution flow is shifted, making it harder to manage the code. Since the logic is handled behind the scenes, it becomes challenging to track what is happening, leading to reduced maintainability of the program.
-
-
-```js
-// Callback Hell or Pyramid of Loop 
-const cart = ["shoes", "pants", "kurta"] ;
-api.createOrder(cart, function () {  // Giving Control to api
-  api.proceedToPayment(function () {
-    api. showOrderSummary(function () {
-      api. updateWallet()
-    })
-  })
-})
-```
 
 ---
 
