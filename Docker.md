@@ -97,12 +97,19 @@ Commands:-
 6. `docker exec -it containername/id bash` -> It will return us inside the container terminal.
 7. `docker run -it -p machineportno:containerportno imagename` -> Map the port
 8. `docker run -it -e key=value -e key=value imagename` -> To pass env variable
-9. `docker build -t imagename` -> To build docker image
+9. `docker build -t imagename .` -> To build docker image
 10. `docker push imagename(same as repo name)` -> To push images to docker hub
 11. `docker compose up` -> To run docker compose(-d for bg run)
 11. `docker compose down` -> To remove docker compose
 12. `docker network create networkname` -> To create custom network
 13. `docker network inspect networkname` -> To inspect network
+14. `docker run -it -v volname:containerpath imagename` -> To add volume(storage) to the image
+15. `docker service create --name servicename --replicas replicanumber --publish port:portservice servicename` -> To create service in swarm
+16. `docker service ls` -> To show all services
+17. `docker rm servicename` -> To remove service
+18. `docker service inspect --pretty servicename`
+19. `docker service scale servicename/id=noofreplicas` -> To scale up/down the replicas
+20. `docker update --availability drain/active serviceid`
 
 ### Docker Network
 A Docker network is how containers communicate with each other and the outside world.
@@ -117,4 +124,5 @@ A Docker network is how containers communicate with each other and the outside w
 
 5. `Macvlan` -> A macvlan network allows containers to have their own unique MAC addresses, making them appear like separate physical devices on the network. This driver connects containers directly to the physical network, bypassing the Docker host’s virtual network layer.
 
-6. 
+### Volume Mounting
+
