@@ -1404,6 +1404,125 @@ changeText(heading1, "one", "red", 1000)
   })
 ```
 
+### Promise API's
+1. Promise.all()
+   -> Waits for all promises to resolve. If any fail, it rejects immediately. If more than one fails at the same time, error will be of the first listed promise in iterable.
+   ```
+   const p1 = Promise.resolve(1);
+   const p2 = Promise.resolve(2);
+
+   Promise.all([p1, p2]).then(values => {
+   console.log(values); // [1, 2]
+   });
+   ```
+
+3. Promise.allSettled()
+   -> Waits for all promises to settle (either resolved or rejected), and returns an array of result objects.
+   ```
+   const p1 = Promise.resolve(1);
+   const p2 = Promise.reject("Error");
+
+   Promise.allSettled([p1, p2]).then(results => {
+   console.log(results);
+   /*
+   [
+    { status: "fulfilled", value: 1 },
+    { status: "rejected", reason: "Error" }
+   ]
+   */
+   });
+   ```
+
+3. Promise.race()
+   -> Returns a promise that resolves or rejects as soon as any promise resolves or rejects.
+   ```
+   const p1 = new Promise(res => setTimeout(() => res("First"), 100));
+   const p2 = new Promise(res => setTimeout(() => res("Second"), 200));
+
+   Promise.race([p1, p2]).then(console.log); // "First"
+   ```
+
+4. Promise.any()
+   -> Returns the first fulfilled promise. If all fail, it rejects with an AggregateError.
+   ```
+   const p1 = Promise.reject("fail 1");
+   const p2 = Promise.resolve("Success");
+
+   Promise.any([p1, p2]).then(console.log); // "Success"
+   ```
+
+### async await
+- async is a keyword that is used to make a function asynchronous and await can be used inside async fn only.
+- async fn always returns a promise. 
+- handle errors using try catch block
+
+```js
+const p1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("P1 resolved!")
+    }, 1000/2000)
+})
+
+const p2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("P2 resolved!")
+    }, 2000/1000)
+})
+
+async function handlePromise(){
+    console.log("Start fetching promise");
+    const val1 = await p1;
+    console.log(val1);
+    
+    const val2 = await p2;
+    console.log(val2);
+}
+
+handlePromise();
+
+Output: (1s, 2s) P1 resolve after 1s and P2 resolved after another 1s
+Output: (2s, 1s) Both get printed at the same time ie 2s
+```
+
+```js
+const p1 = new Promise((resolve) => {
+    console.log("p1 created");
+    setTimeout(() => {
+        console.log("p1 timer done");
+        resolve("P1 resolved");
+    }, 3000);
+});
+
+const p2 = new Promise((resolve) => {
+    console.log("p2 created");
+    setTimeout(() => {
+        console.log("p2 timer done");
+        resolve("P2 resolved");
+    }, 2000);
+});
+
+async function handlePromise() {
+    console.log("Start async");
+
+    const val1 = await p1;
+    console.log(val1);
+
+    const val2 = await p2;
+    console.log(val2);
+}
+
+handlePromise();
+
+Output:
+p1 created
+p2 created
+Start async
+p2 timer done
+p1 timer done
+P1 resolved
+P2 resolved
+```
+
 ## AJAX (Asynchronous Javascript and XML)
 // is a set of "web development techniques" 
 // using many web technologies on the "client-side "
