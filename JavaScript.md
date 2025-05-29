@@ -43,8 +43,7 @@ readline.question("Enter your name: ", (name) => {
 1. for
 2. while
 3. do while
-4. for each
-5. for of
+4. for of
    Used to iterate over arrays, strings, Maps, Sets, and other iterable objects. It gives values directly.
    ```js
    let fruits = ["apple", "mango", "orange"];
@@ -53,7 +52,7 @@ readline.question("Enter your name: ", (name) => {
    }
    // output: apple, mango, orange
    ```
-6. for in
+5. for in
   Used to iterate over object properties (keys). It gives keys (not values) of an object.
    ```js
    let obj = { name: "Alice", age: 25 };
